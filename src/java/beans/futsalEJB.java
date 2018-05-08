@@ -5,7 +5,12 @@
  */
 package beans;
 
+import entities.Usuari;
+import java.io.IOException;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnit;
 
 /**
  *
@@ -14,6 +19,21 @@ import javax.ejb.Stateless;
 @Stateless
 public class futsalEJB {
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+   @PersistenceUnit EntityManagerFactory emf;
+public void altaUser(Usuari u)throws IOException{
+    
+    EntityManager em=emf.createEntityManager();
+    Usuari aux=em.find(Usuari.class, u.getUsername());
+    if(aux!=null){
+    
+    em.close();
+    throw new IOException("Ya existe un usuario con este nombre");
+    
+    }
+em.persist(u);
+em.close();
+
+}
+
+
 }
