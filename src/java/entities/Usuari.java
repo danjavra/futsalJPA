@@ -58,6 +58,10 @@ public class Usuari implements Serializable {
         this.username = username;
     }
 
+    public Usuari(String username, String contrasenya, Integer tipo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public String getUsername() {
         return username;
     }
