@@ -138,7 +138,7 @@ public void insertarTeam(Equip e) throws SQLException, MiExcepcion {
      
     public String validateUserByPassword(String username, String contrasenya)throws SQLException, MiExcepcion {
        conectar();
-        String select = "select * from usuari where username = '"+username+"' and password = '"+contrasenya+"' ";
+        String select = "select * from usuari where username = '"+username+"' and contrasenya = '"+contrasenya+"' ";
      Statement st = conexion.createStatement();
      String validate = "false";
         ResultSet rs = st.executeQuery(select);
