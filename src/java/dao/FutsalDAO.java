@@ -94,6 +94,7 @@ public void insertarTeam(Equip e) throws SQLException, MiExcepcion {
         st.close();
         return existe;
     }
+    
      private boolean existeEquipo(Equip e) throws SQLException {
         String select = "select * from equip where nom='" + e.getNom() + "'";
         Statement st = conexion.createStatement();
@@ -105,6 +106,21 @@ public void insertarTeam(Equip e) throws SQLException, MiExcepcion {
         rs.close();
         st.close();
         return existe;
+    }
+     
+    private boolean existeUsuari(Usuari e) throws SQLException {
+  
+        String select = "select * from usuari where username='" + e.getUsername() + "'";
+        Statement st = conexion.createStatement();
+        boolean existe = false;
+        ResultSet rs = st.executeQuery(select);
+        if (rs.next()) {
+            existe = true;
+        }
+        rs.close();
+        st.close();
+        return existe;
+        
     }
      
           private boolean existePartit(Partit p) throws SQLException {
@@ -120,18 +136,43 @@ public void insertarTeam(Equip e) throws SQLException, MiExcepcion {
         return existe;
     }
      
-    public boolean validateUserByPassword(String name, String pass)throws SQLException, MiExcepcion {
-     String select = "select * from user where username = '"+name+"' and password = '"+pass+"' ";
+    public String validateUserByPassword(String username, String contrasenya)throws SQLException, MiExcepcion {
+       conectar();
+        String select = "select * from usuari where username = '"+username+"' and password = '"+contrasenya+"' ";
      Statement st = conexion.createStatement();
-     boolean validate = false;
+     String validate = "false";
         ResultSet rs = st.executeQuery(select);
         if (rs.next()) {
-            validate = true;
+            validate = "true";
         }
         rs.close();
         st.close();
+         desconectar();
         return validate;
     }  
+    
+      public Usuari getUserByName(Usuari a)throws SQLException, MiExcepcion {
+      conectar();
+      Usuari aux = new Usuari();
+      aux.setUsername(a.getUsername());
+      if (!existeUsuari(aux)){
+          throw new MiExcepcion("No existe un usuario con ese nombre");
+      } else { 
+          String select = "select * from usuari where username='" + a.getUsername() + "'";
+          Statement st = conexion.createStatement();
+          ResultSet rs = st.executeQuery(select);
+          if(rs.next()){
+            a.setUsername(a.getUsername());
+            a.setContrasenya(rs.getString("contrasenya"));
+            a.setTipo(rs.getInt("tipo"));
+            
+          }
+          rs.close();
+          st.close();
+          desconectar();
+          return a;
+    }
+      }
 
       //********************* Selects ****************************
      

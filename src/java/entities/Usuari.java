@@ -19,6 +19,7 @@ public class Usuari {
         
     }
 
+    
     public Usuari(String username, String contrasenya, Integer tipo) {
         this.username = username;
         this.contrasenya = contrasenya;
