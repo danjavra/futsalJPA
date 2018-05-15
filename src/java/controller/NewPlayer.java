@@ -6,6 +6,7 @@
 package controller;
 
 import dao.FutsalDAO;
+import entities.Equip;
 import entities.Player;
 import entities.Usuari;
 import excepciones.MiExcepcion;
@@ -42,7 +43,7 @@ public class NewPlayer extends HttpServlet {
         String nom = request.getParameter("nom");
         String posicio = request.getParameter("posicio");
         Integer edat = Integer.parseInt(request.getParameter("edat"));
-        Equip equip = new Equip null;
+        Equip equip = null;
         Integer mvp = 0;
         
         Usuari u = new Usuari(nombreUsuario, password, tipo);
@@ -50,7 +51,7 @@ public class NewPlayer extends HttpServlet {
         
 
         try{
-            System.out.println(u.getContrasenya());
+            System.out.println(u.getUsername());
             futsalDAO.insertarUser(u);
             futsalDAO.insertarPlayer(p);
             request.setAttribute("success", "New Empleado Registered");

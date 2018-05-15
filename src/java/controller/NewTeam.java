@@ -50,7 +50,7 @@ public class NewTeam extends HttpServlet {
         Equip e = new Equip(nom, ciutat, telefon, punts,u);
 
         try {
-            System.out.println(u.getContrasenya());
+            System.out.println(u.getUsername());
             futsalDAO.insertarUser(u);
             futsalDAO.insertarTeam(e);
             request.setAttribute("success", "New Team Registered");
