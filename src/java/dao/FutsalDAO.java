@@ -196,7 +196,31 @@ public void insertarTeam(Equip e) throws SQLException, MiExcepcion {
           return a;
     }
       }
-
+//********************* Deletes****************************
+      
+public void DeleteUser(Usuari e) throws SQLException, MiExcepcion {
+    conectar();
+        if (!existeUsuari(e)) {
+            throw new MiExcepcion("ERROR: no existe user");
+        } else {
+            // Definimos la consulta
+            String delete = "delete from user where username = "+ e.getUsername();
+            // Necesitamos preparar la consulta parametrizada
+            PreparedStatement ps = conexion.prepareStatement(delete);
+            // Le damos valor a los interrogantes
+            System.out.println("Se ha eliminado correctamente");
+            
+            // Ejecutamos la consulta
+            ps.executeUpdate(delete);
+            // cerramos recursos
+            ps.close();
+            desconectar();
+        }
+    }
+      
+      
+      
+      
       //********************* Selects ****************************
      
      //********************* Update ****************************
