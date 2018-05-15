@@ -54,7 +54,7 @@ public class Player implements Serializable {
     private String posicio;
     @Column(name = "edat")
     @Temporal(TemporalType.DATE)
-    private Date edat;
+    private Integer edat;
     @Size(max = 20)
     @Column(name = "equip")
     private String equip;
@@ -95,11 +95,11 @@ public class Player implements Serializable {
         this.posicio = posicio;
     }
 
-    public Date getEdat() {
+    public Integer getEdat() {
         return edat;
     }
 
-    public void setEdat(Date edat) {
+    public void setEdat(Integer edat) {
         this.edat = edat;
     }
 
