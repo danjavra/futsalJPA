@@ -32,7 +32,7 @@ public void insertarPlayer(Player p) throws SQLException, MiExcepcion {
             throw new MiExcepcion("ERROR: Ya existe un player con ese nombre");
         } else {
             // Definimos la consulta
-            String insert = "insert into cocinero values (?, ?, ?, ?, ?, ?, ?)";
+            String insert = "insert into player values (?, ?, ?, ?, ?, ?, ?)";
             // Necesitamos preparar la consulta parametrizada
             PreparedStatement ps = conexion.prepareStatement(insert);
             // Le damos valor a los interrogantes
@@ -42,7 +42,7 @@ public void insertarPlayer(Player p) throws SQLException, MiExcepcion {
             ps.setInt(4, p.getEdat());
             ps.setString(5, p.getEquip());
             ps.setInt(6, p.getMvp());
-            ps.setString(7, p.getUser());
+            ps.setObject(7, p.getUser());
             // Ejecutamos la consulta
             ps.executeUpdate();
             // cerramos recursos
@@ -54,23 +54,25 @@ public void insertarTeam(Equip e) throws SQLException, MiExcepcion {
             throw new MiExcepcion("ERROR: Ya existe un equipo con ese nombre");
         } else {
             // Definimos la consulta
-            String insert = "insert into equip values (?, ?, ?, ?, ?, ?, ?)";
+            String insert = "insert into equip values (?, ?, ?, ?, ?)";
             // Necesitamos preparar la consulta parametrizada
             PreparedStatement ps = conexion.prepareStatement(insert);
             // Le damos valor a los interrogantes
             
             ps.setString(1, e.getNom());
-            ps.setString(3, e.getCiutat());
-            ps.setInt(4, e.getTelefon());
-            ps.setInt(5, e.getPunts());
-            ps.setInt(6, e.getUser());
+            ps.setString(2, e.getCiutat());
+            ps.setInt(3, e.getTelefon());
+            ps.setInt(4, e.getPunts());
+            ps.setObject(5, e.getUser());
             // Ejecutamos la consulta
             ps.executeUpdate();
             // cerramos recursos
             ps.close();
         }
     }
+// hi ha alguna cosa malament en la consulta sql crec
          private void insertPartido(Partit equip1, Partit equip2) throws SQLException {
+             
         String insert = "insert into partit (equip1,equip2) values (?,?,?,?,?)";
         PreparedStatement ps = conexion.prepareStatement(insert);
         ps.setObject(1,equip1.getEquip1());
@@ -105,14 +107,27 @@ public void insertarTeam(Equip e) throws SQLException, MiExcepcion {
         return existe;
     }
      
-
-      // ********************* Selects ****************************
-     
-     // ********************* Update ****************************
-     public void modificarUserName(Usuari user, String newUsername) throws SQLException {
+          private boolean existePartit(Partit p) throws SQLException {
+        String select = "select * from partit where Idpartit='" + p.getIdpartit()+ "'";
         Statement st = conexion.createStatement();
-        String updateUsername = "update usuari set username = '" + newUsername + "' where username = '" + user.getUsername() + "'";
-        st.executeUpdate(updateUsername);
+        boolean existe = false;
+        ResultSet rs = st.executeQuery(select);
+        if (rs.next()) {
+            existe = true;
+        }
+        rs.close();
+        st.close();
+        return existe;
+    }
+     
+
+      //********************* Selects ****************************
+     
+     //********************* Update ****************************
+     public void modificarUserUsername(Usuari user, String newUsername) throws SQLException {
+        Statement st = conexion.createStatement();
+        String updateUserUsername = "update usuari set username = '" + newUsername + "' where username = '" + user.getUsername() + "'";
+        st.executeUpdate(updateUserUsername);
         System.out.println("Se ha modificado correctamente el nombre del usuario " + user.getUsername());
         st.close();
 
