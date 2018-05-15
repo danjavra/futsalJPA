@@ -27,7 +27,29 @@ public class FutsalDAO {
     private Connection conexion;
     
       // ********************* Inserts ****************************
-public void insertarPlayer(Player p) throws SQLException, MiExcepcion {
+public void insertarUser(Usuari u) throws SQLException, MiExcepcion {
+    conectar();
+        if (existeUsuari(u)) {
+            throw new MiExcepcion("ERROR: Ya existe un usuario con este nombre");
+        } else {
+            // Definimos la consulta
+            String insert = "insert into usuari values (?, ?, ?)";
+            // Necesitamos preparar la consulta parametrizada
+            PreparedStatement ps = conexion.prepareStatement(insert);
+            // Le damos valor a los interrogantes
+            ps.setString(1, u.getUsername());
+            ps.setString(2, u.getContrasenya());
+            ps.setInt(3, u.getTipo());
+            // Ejecutamos la consulta
+            ps.executeUpdate();
+            // cerramos recursos
+            ps.close();
+            desconectar();
+        }
+    }
+
+    public void insertarPlayer(Player p) throws SQLException, MiExcepcion {
+    conectar();
         if (existePlayer(p)) {
             throw new MiExcepcion("ERROR: Ya existe un player con ese nombre");
         } else {
@@ -42,11 +64,12 @@ public void insertarPlayer(Player p) throws SQLException, MiExcepcion {
             ps.setInt(4, p.getEdat());
             ps.setString(5, p.getEquip().getNom());
             ps.setInt(6, p.getMvp());
-            ps.setObject(7, p.getUser());
+            ps.setString(7, p.getUser().getUsername());
             // Ejecutamos la consulta
             ps.executeUpdate();
             // cerramos recursos
             ps.close();
+            desconectar();
         }
     }
 public void insertarTeam(Equip e) throws SQLException, MiExcepcion {

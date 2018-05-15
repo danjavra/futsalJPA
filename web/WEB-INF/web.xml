@@ -8,6 +8,10 @@
         <servlet-name>Login</servlet-name>
         <servlet-class>controller.Login</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>NewPlayer</servlet-name>
+        <servlet-class>controller.NewPlayer</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>FutsalServlet</servlet-name>
         <url-pattern>/FutsalServlet</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewPlayer</servlet-name>
+        <url-pattern>/NewPlayer</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

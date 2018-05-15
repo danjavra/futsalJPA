@@ -26,6 +26,7 @@ public class Usuari {
         this.tipo = tipo;
     }
 
+
     public String getUsername() {
         return username;
     }

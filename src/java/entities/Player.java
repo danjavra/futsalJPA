@@ -34,6 +34,26 @@ public class Player {
         this.user = user;
     }
 
+    public Player(String nom, String posicio, Integer edat, Usuari user) {
+        this.nom = nom;
+        this.posicio = posicio;
+        this.edat = edat;
+        this.user = user;
+    }
+
+    public Player(String nom, String posicio, Integer edat, Equip equip, Integer mvp, Usuari user) {
+        this.nom = nom;
+        this.posicio = posicio;
+        this.edat = edat;
+        this.equip = equip;
+        this.mvp = mvp;
+        this.user = user;
+    }
+
+
+
+  
+
     public Integer getIdplayer() {
         return idplayer;
     }
