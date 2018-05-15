@@ -4,9 +4,17 @@
         <servlet-name>FutsalServlet</servlet-name>
         <servlet-class>servlets.FutsalServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>controller.Login</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>FutsalServlet</servlet-name>
         <url-pattern>/FutsalServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/Login</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

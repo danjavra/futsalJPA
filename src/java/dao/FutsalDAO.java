@@ -40,7 +40,7 @@ public void insertarPlayer(Player p) throws SQLException, MiExcepcion {
             ps.setString(2, p.getNom());
             ps.setString(3, p.getPosicio());
             ps.setInt(4, p.getEdat());
-            ps.setString(5, p.getEquip());
+            ps.setString(5, p.getEquip().getNom());
             ps.setInt(6, p.getMvp());
             ps.setObject(7, p.getUser());
             // Ejecutamos la consulta
@@ -120,6 +120,18 @@ public void insertarTeam(Equip e) throws SQLException, MiExcepcion {
         return existe;
     }
      
+    public boolean validateUserByPassword(String name, String pass)throws SQLException, MiExcepcion {
+     String select = "select * from user where username = '"+name+"' and password = '"+pass+"' ";
+     Statement st = conexion.createStatement();
+     boolean validate = false;
+        ResultSet rs = st.executeQuery(select);
+        if (rs.next()) {
+            validate = true;
+        }
+        rs.close();
+        st.close();
+        return validate;
+    }  
 
       //********************* Selects ****************************
      
@@ -142,14 +154,13 @@ public void insertarTeam(Equip e) throws SQLException, MiExcepcion {
 
     }
      
-     
-     
+
 
        // ********************* Conectar / Desconectar ****************************
     public void conectar() throws SQLException {
         String url = "jdbc:mysql://localhost:3306/futsal";
         String user = "root";
-        String pass = "root";
+        String pass = "";
         conexion = DriverManager.getConnection(url, user, pass);
     }
 
