@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Alta Equipo</h1>
+        
+            <form action="NewTeam" method="POST">
+                <label>Nom Usuari</label> <input type="text" name="username" required>
+                <label>Password</label> <input type="text" name="contrasenya" required>
+                <input hidden="" type="text" name="tipo" value="1" >
+                <label>Nom Complet</label> <input type="text" name="nom" required>
+                <label>Ciutat</label> <input type="text" name="ciutat" required>
+                <label>Telefon</label> <input type="text" name="telefon" required>
+                <input hidden="" type="text" name="punts" value="0" >
+                
+                <span><input type="submit" value="Alta eQUIPO"></span>
+            </form>
+            
+            <form action="index.html">
+                <input type="submit" value="Back">
+            </form>
+    </body>
+</html>

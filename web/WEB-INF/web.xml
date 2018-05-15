@@ -12,6 +12,10 @@
         <servlet-name>NewPlayer</servlet-name>
         <servlet-class>controller.NewPlayer</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>NewTeam</servlet-name>
+        <servlet-class>controller.NewTeam</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>FutsalServlet</servlet-name>
         <url-pattern>/FutsalServlet</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>NewPlayer</servlet-name>
         <url-pattern>/NewPlayer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewTeam</servlet-name>
+        <url-pattern>/NewTeam</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
